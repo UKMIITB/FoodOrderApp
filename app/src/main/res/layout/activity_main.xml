@@ -9,7 +9,7 @@
         android:layout_height="0dp"
         android:layout_weight="4">
 
-        <androidx.viewpager.widget.ViewPager
+        <pl.pzienowicz.autoscrollviewpager.AutoScrollViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

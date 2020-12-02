@@ -46,4 +46,6 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     //Gson
     implementation 'com.google.code.gson:gson:2.8.6'
+    //Auto scroll view pager
+    implementation 'com.github.pzienowicz:androidx-auto-scroll-view-pager:1.1.0'
 }

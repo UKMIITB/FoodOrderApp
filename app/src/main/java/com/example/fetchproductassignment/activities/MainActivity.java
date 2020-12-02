@@ -3,7 +3,6 @@ package com.example.fetchproductassignment.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +29,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import pl.pzienowicz.autoscrollviewpager.AutoScrollViewPager;
+
 public class MainActivity extends AppCompatActivity implements ItemClickListener {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
 
     ArrayList<AllCategoryModel> arrayList = new ArrayList<>();
 
-    ViewPager viewPager;
+    AutoScrollViewPager viewPager;
     MainActivityViewPagerAdapter mainActivityViewPagerAdapter;
 
     public static final String CATEGORYID = "catId";
@@ -99,6 +100,15 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         viewPager = findViewById(R.id.viewpager);
         mainActivityViewPagerAdapter = new MainActivityViewPagerAdapter(this, imageUrls);
         viewPager.setAdapter(mainActivityViewPagerAdapter);
+
+        //Properties of Auto Scroll ViewPager
+        viewPager.setDirection(AutoScrollViewPager.Direction.RIGHT);
+        viewPager.setInterval(2000);
+        viewPager.setCycle(true);
+        viewPager.setBorderAnimation(true);
+        viewPager.setSlideBorderMode(AutoScrollViewPager.SlideBorderMode.TO_PARENT);
+        viewPager.startAutoScroll();
+
     }
 
     @Override
