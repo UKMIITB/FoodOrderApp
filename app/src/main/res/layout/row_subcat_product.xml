@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp">
+
+    <ImageView
+        android:id="@+id/image_view_pic"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textview_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/image_view_pic"
+        android:text="Product Name"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textview_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textview_product_name"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/image_view_pic"
+        android:text="Quantity: 100"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textview_mrp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/textview_price"
+        android:layout_alignParentRight="true"
+        android:padding="8dp"
+        android:text="MRP: "
+        android:textSize="16sp"
+        android:textStyle="italic" />
+
+
+    <TextView
+        android:id="@+id/textview_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/image_view_pic"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="30dp"
+        android:padding="8dp"
+        android:text="Price: 500"
+        android:textSize="16sp" />
+</RelativeLayout>

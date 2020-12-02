@@ -12,11 +12,11 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.example.fetchproductassignment.R;
 import com.squareup.picasso.Picasso;
 
-public class ViewPagerAdapter extends PagerAdapter {
+public class MainActivityViewPagerAdapter extends PagerAdapter {
     Context context;
     String[] imageUrls;
 
-    public ViewPagerAdapter(Context context, String[] imageUrls) {
+    public MainActivityViewPagerAdapter(Context context, String[] imageUrls) {
         this.context = context;
         this.imageUrls = imageUrls;
     }
@@ -34,7 +34,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.row_view_pager, container, false);
+        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.row_main_activity_view_pager, container, false);
         Picasso.get()
                 .load(imageUrls[position])
                 .fit()

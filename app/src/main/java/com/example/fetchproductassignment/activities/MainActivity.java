@@ -5,20 +5,24 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.fetchproductassignment.adapters.ViewPagerAdapter;
+import com.example.fetchproductassignment.adapters.MainActivityViewPagerAdapter;
+import com.example.fetchproductassignment.app.ItemClickListener;
 import com.example.fetchproductassignment.models.AllCategoryModel;
 import com.example.fetchproductassignment.adapters.CategoryRecyclerViewAdapter;
-import com.example.fetchproductassignment.app.Config;
 import com.example.fetchproductassignment.app.EndPoints;
 import com.example.fetchproductassignment.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +30,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ItemClickListener {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     CategoryRecyclerViewAdapter adapter;
@@ -34,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<AllCategoryModel> arrayList = new ArrayList<>();
 
     ViewPager viewPager;
-    ViewPagerAdapter viewPagerAdapter;
+    MainActivityViewPagerAdapter mainActivityViewPagerAdapter;
+
+    public static final String CATEGORYID = "catId";
 
     private final String[] imageUrls = new String[]{
             "https://cdn.pixabay.com/photo/2016/11/11/23/34/cat-1817970_960_720.jpg",
@@ -60,21 +66,15 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     int count = jsonObject.getInt("count");
 
-                    Log.d("TAG", String.valueOf(count));
-
                     JSONArray data = jsonObject.getJSONArray("data");
+                    Gson gson = new GsonBuilder().create();
+
                     for (int i = 0; i < count; i++) {
-                        Log.d("TAG", String.valueOf(i));
-                        JSONObject data_val = data.getJSONObject(i);
-                        String cat_name = data_val.getString("catName");
-                        String cat_image = data_val.getString("catImage");
-                        Log.d("TAG", Config.IMAGE_URL + cat_image);
-                        arrayList.add(new AllCategoryModel(Config.IMAGE_URL + cat_image, cat_name));
-//                        arrayList.add(new AllCategoryModel(imageUrls[i], cat_name));
+                        AllCategoryModel allCategoryModel = gson.fromJson(String.valueOf(data.get(i)), AllCategoryModel.class);
+                        arrayList.add(allCategoryModel);
                     }
 
                     adapter.setData(arrayList);
-                    Log.d("TAG", "setData called");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -93,11 +93,18 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview);
         layoutManager = new GridLayoutManager(getApplicationContext(), 2, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new CategoryRecyclerViewAdapter(this, arrayList);
+        adapter = new CategoryRecyclerViewAdapter(this, arrayList, this);
         recyclerView.setAdapter(adapter);
 
         viewPager = findViewById(R.id.viewpager);
-        viewPagerAdapter = new ViewPagerAdapter(this, imageUrls);
-        viewPager.setAdapter(viewPagerAdapter);
+        mainActivityViewPagerAdapter = new MainActivityViewPagerAdapter(this, imageUrls);
+        viewPager.setAdapter(mainActivityViewPagerAdapter);
+    }
+
+    @Override
+    public void onItemClicked(View view, int position) {
+        Intent intent = new Intent(this, SubCategoryActivity.class);
+        intent.putExtra(CATEGORYID, arrayList.get(position).getCatId());
+        startActivity(intent);
     }
 }

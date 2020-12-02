@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fetchproductassignment.app.Config;
+import com.example.fetchproductassignment.app.ItemClickListener;
 import com.example.fetchproductassignment.models.AllCategoryModel;
 import com.example.fetchproductassignment.R;
 import com.squareup.picasso.Picasso;
@@ -21,27 +23,29 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
 
     Context context;
     ArrayList<AllCategoryModel> arrayList;
+    ItemClickListener itemClickListener;
 
-    public CategoryRecyclerViewAdapter(Context context, ArrayList<AllCategoryModel> arrayList) {
+    public CategoryRecyclerViewAdapter(Context context, ArrayList<AllCategoryModel> arrayList, ItemClickListener itemClickListener) {
         this.context = context;
         this.arrayList = arrayList;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_recycler_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_category_recycler_view, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AllCategoryModel data = arrayList.get(position);
-        holder.textView.setText(data.getCategoryName());
-        Log.d("TAG1", "NEw: "+data.getImageUrl());
+        holder.textView.setText(data.getCatName());
+        String imageUrl = Config.IMAGE_URL + data.getCatImage();
         Picasso.get()
-                .load(data.getImageUrl())
-                .resize(100,100)
+                .load(imageUrl)
+                .fit()
                 .error(R.drawable.ic_launcher_background)
                 .centerCrop()
                 .into(holder.imageView);
@@ -52,12 +56,13 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         notifyDataSetChanged();
     }
 
+
     @Override
     public int getItemCount() {
         return arrayList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView imageView;
         TextView textView;
@@ -66,6 +71,15 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
             super(itemView);
             imageView = itemView.findViewById(R.id.image_view_pic);
             textView = itemView.findViewById(R.id.text_view_category);
+
+            itemView.setTag(itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (itemClickListener != null)
+                itemClickListener.onItemClicked(view, getAdapterPosition());
         }
     }
 }

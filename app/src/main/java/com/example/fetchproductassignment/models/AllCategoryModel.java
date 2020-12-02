@@ -1,19 +1,37 @@
 package com.example.fetchproductassignment.models;
 
 public class AllCategoryModel {
-    private String imageUrl;
-    private String categoryName;
+    private String catName;
+    private String catImage;
+    private int catId;
 
-    public AllCategoryModel(String imageUrl, String categoryName) {
-        this.imageUrl = imageUrl;
-        this.categoryName = categoryName;
+    public AllCategoryModel(String catName, String catImage, int catId) {
+        this.catName = catName;
+        this.catImage = catImage;
+        this.catId = catId;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getCatName() {
+        return catName;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public void setCatName(String catName) {
+        this.catName = catName;
+    }
+
+    public String getCatImage() {
+        return catImage;
+    }
+
+    public void setCatImage(String catImage) {
+        this.catImage = catImage;
+    }
+
+    public int getCatId() {
+        return catId;
+    }
+
+    public void setCatId(int catId) {
+        this.catId = catId;
     }
 }
