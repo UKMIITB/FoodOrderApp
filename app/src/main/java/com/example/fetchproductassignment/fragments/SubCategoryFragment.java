@@ -33,7 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ProductFragment extends Fragment implements ItemClickListener {
+public class SubCategoryFragment extends Fragment implements ItemClickListener {
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -45,7 +45,6 @@ public class ProductFragment extends Fragment implements ItemClickListener {
         super.onCreate(savedInstanceState);
         int subId = getArguments().getInt("subId", 1);
         generateData(subId);
-        Log.d("TAG", "Oncreate :" + subId);
     }
 
     private void generateData(int subId) {
@@ -102,6 +101,7 @@ public class ProductFragment extends Fragment implements ItemClickListener {
     public void onItemClicked(View view, int position) {
         Intent intent = new Intent(getContext(), ProductActivity.class);
         intent.putExtra("ProductModel", arrayList.get(position));
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 }

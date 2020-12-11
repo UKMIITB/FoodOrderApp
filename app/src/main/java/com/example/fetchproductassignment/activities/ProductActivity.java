@@ -1,23 +1,25 @@
 package com.example.fetchproductassignment.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
+
 import com.example.fetchproductassignment.R;
 import com.example.fetchproductassignment.app.Config;
 import com.example.fetchproductassignment.models.SubCategoryProductModel;
 import com.squareup.picasso.Picasso;
 
-public class ProductActivity extends AppCompatActivity {
+public class ProductActivity extends BaseActivity {
 
     ImageView imageViewPic;
     TextView textViewProductName, textViewDescription, textViewMrp, textViewPrice;
     SubCategoryProductModel data;
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,12 @@ public class ProductActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         data = (SubCategoryProductModel) intent.getSerializableExtra("ProductModel");
+
+        //Setup ToolBar
+        toolbar = findViewById(R.id.custom_app_bar);
+        toolbar.setTitle(data.getProductName());
+        setSupportActionBar(toolbar);
+
         init();
     }
 

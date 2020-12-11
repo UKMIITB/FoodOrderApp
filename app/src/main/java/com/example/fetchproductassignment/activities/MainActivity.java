@@ -1,25 +1,26 @@
 package com.example.fetchproductassignment.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.fetchproductassignment.R;
+import com.example.fetchproductassignment.adapters.CategoryRecyclerViewAdapter;
 import com.example.fetchproductassignment.adapters.MainActivityViewPagerAdapter;
+import com.example.fetchproductassignment.app.EndPoints;
 import com.example.fetchproductassignment.app.ItemClickListener;
 import com.example.fetchproductassignment.models.AllCategoryModel;
-import com.example.fetchproductassignment.adapters.CategoryRecyclerViewAdapter;
-import com.example.fetchproductassignment.app.EndPoints;
-import com.example.fetchproductassignment.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 
 import pl.pzienowicz.autoscrollviewpager.AutoScrollViewPager;
 
-public class MainActivity extends AppCompatActivity implements ItemClickListener {
+public class MainActivity extends BaseActivity implements ItemClickListener {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     CategoryRecyclerViewAdapter adapter;
@@ -41,20 +42,28 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
     AutoScrollViewPager viewPager;
     MainActivityViewPagerAdapter mainActivityViewPagerAdapter;
 
+    Toolbar toolbar;
+
     public static final String CATEGORYID = "catId";
+    public static final String CATEGORY_NAME = "catName";
 
     private final String[] imageUrls = new String[]{
-            "https://cdn.pixabay.com/photo/2016/11/11/23/34/cat-1817970_960_720.jpg",
-            "https://cdn.pixabay.com/photo/2017/12/21/12/26/glowworm-3031704_960_720.jpg",
-            "https://cdn.pixabay.com/photo/2017/12/24/09/09/road-3036620_960_720.jpg",
-            "https://cdn.pixabay.com/photo/2017/11/07/00/07/fantasy-2925250_960_720.jpg",
-            "https://cdn.pixabay.com/photo/2017/10/10/15/28/butterfly-2837589_960_720.jpg"
+            "https://i.gadgets360cdn.com/large/flipkart_big_billion_days_sale_2020_1601713929030.jpg",
+            "https://images.indianexpress.com/2020/10/Untitled-design-2020-10-15T171350.830.jpg",
+            "https://cdn.grabon.in/gograbon/images/merchant/1545547346420.png",
+            "https://cdn.static-zoutons.com/images/originals/blog/zomatoexistinguseroffers_1530610267.jpg",
+            "https://www.dineout.co.in/blog/wp-content/uploads/2018/10/WhatsApp-Image-2018-10-18-at-8.06.23-PM.jpeg"
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Setup ToolBar
+        toolbar = findViewById(R.id.custom_app_bar);
+        toolbar.setTitle("Home Page");
+        setSupportActionBar(toolbar);
 
         init();
     }
@@ -75,6 +84,9 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
                         arrayList.add(allCategoryModel);
                     }
 
+                    ProgressBar progressBar = findViewById(R.id.progressbar);
+                    progressBar.setVisibility(View.GONE);
+
                     adapter.setData(arrayList);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -83,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("TAG", error.getMessage());
+                Log.e("TAG", "" + error.getMessage());
             }
         });
         Volley.newRequestQueue(this).add(request);
@@ -109,12 +121,15 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         viewPager.setSlideBorderMode(AutoScrollViewPager.SlideBorderMode.TO_PARENT);
         viewPager.startAutoScroll();
 
+        //Update options menu
+        invalidateOptionsMenu();
     }
 
     @Override
     public void onItemClicked(View view, int position) {
         Intent intent = new Intent(this, SubCategoryActivity.class);
         intent.putExtra(CATEGORYID, arrayList.get(position).getCatId());
+        intent.putExtra(CATEGORY_NAME, arrayList.get(position).getCatName());
         startActivity(intent);
     }
 }

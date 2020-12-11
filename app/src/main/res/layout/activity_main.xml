@@ -4,6 +4,8 @@
     android:orientation="vertical"
     android:weightSum="10">
 
+    <include layout="@layout/custom_app_bar" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -26,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="8dp"
+            android:paddingBottom="8dp"
             android:text="All Categories"
             android:textSize="28sp" />
 
@@ -37,6 +39,14 @@
             android:layout_below="@id/textview_heading"
             android:layout_marginTop="16dp"
             android:padding="8dp" />
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:visibility="visible" />
     </RelativeLayout>
 
 </LinearLayout>

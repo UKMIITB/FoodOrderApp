@@ -5,6 +5,8 @@
     android:orientation="vertical"
     android:weightSum="10">
 
+    <include layout="@layout/custom_app_bar" />
+
     <ImageView
         android:id="@+id/image_view_pic"
         android:layout_width="match_parent"

@@ -1,22 +1,24 @@
 package com.example.fetchproductassignment.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.fetchproductassignment.R;
 import com.example.fetchproductassignment.adapters.SubCatFragmentViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-public class SubCategoryActivity extends AppCompatActivity {
+public class SubCategoryActivity extends BaseActivity {
 
     ViewPager viewPager;
     TabLayout tabLayout;
     SubCatFragmentViewPagerAdapter adapter;
     Context context;
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,13 @@ public class SubCategoryActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int catId = intent.getIntExtra(MainActivity.CATEGORYID, 0);
+        String catName = intent.getStringExtra(MainActivity.CATEGORY_NAME);
+
+        //Setup ToolBar
+        toolbar = findViewById(R.id.custom_app_bar);
+        toolbar.setTitle(catName);
+        setSupportActionBar(toolbar);
+
         init(catId);
     }
 

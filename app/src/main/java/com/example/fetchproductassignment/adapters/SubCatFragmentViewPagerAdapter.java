@@ -2,7 +2,6 @@ package com.example.fetchproductassignment.adapters;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.fetchproductassignment.app.EndPoints;
-import com.example.fetchproductassignment.fragments.ProductFragment;
+import com.example.fetchproductassignment.fragments.SubCategoryFragment;
 import com.example.fetchproductassignment.models.SubCategoryModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -45,7 +44,7 @@ public class SubCatFragmentViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         Bundle bundle = new Bundle();
         bundle.putInt("subId", arrayList.get(position).getSubId());
-        Fragment fragment = new ProductFragment();
+        Fragment fragment = new SubCategoryFragment();
         fragment.setArguments(bundle);
         return fragment;
     }

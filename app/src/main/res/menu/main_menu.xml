@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_user"
+        android:title="Hello, Guest!"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_cart"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
+        android:title="Go to Cart"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_login_logout"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Login/Create Account"
+        app:showAsAction="never" />
+</menu>
