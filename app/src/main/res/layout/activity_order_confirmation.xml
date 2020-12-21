@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textview_processing_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Please wait while we place your order!\nDon't press back button or exit"
+        android:textSize="20sp" />
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textview_processing_message"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16sp"
+        android:indeterminate="true" />
+
+    <ImageView
+        android:id="@+id/image_view_tick"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_baseline_done_24"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/textview_confirmation_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_view_tick"
+        android:background="#1CF109"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Order placed successfully\nRedirecting to HomePage"
+        android:textSize="24sp"
+        android:visibility="gone" />
+</RelativeLayout>

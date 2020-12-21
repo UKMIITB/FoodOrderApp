@@ -3,6 +3,10 @@ package com.example.fetchproductassignment.activities;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +21,7 @@ public class ProductActivity extends BaseActivity {
 
     ImageView imageViewPic;
     TextView textViewProductName, textViewDescription, textViewMrp, textViewPrice;
+    Button buttonAddToCart;
     SubCategoryProductModel data;
 
     Toolbar toolbar;
@@ -35,6 +40,20 @@ public class ProductActivity extends BaseActivity {
         setSupportActionBar(toolbar);
 
         init();
+        cartClickListener();
+    }
+
+    private void cartClickListener() {
+        buttonAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentCartActivity = new Intent(ProductActivity.this, CartActivity.class);
+                intentCartActivity.putExtra("ProductData", data);
+                Log.d("TAG", "Sent an intent to CartActivity");
+                startActivity(intentCartActivity);
+                finish();
+            }
+        });
     }
 
     private void init() {
@@ -43,6 +62,7 @@ public class ProductActivity extends BaseActivity {
         textViewDescription = findViewById(R.id.textview_description);
         textViewMrp = findViewById(R.id.textview_mrp);
         textViewPrice = findViewById(R.id.textview_price);
+        buttonAddToCart = findViewById(R.id.button_add_to_cart);
 
         String imageUrl = Config.IMAGE_URL + data.getImage();
         Picasso.get()
