@@ -45,7 +45,6 @@ public class PaymentActivity extends AppCompatActivity {
                 if (radioGroupPaymentMode.getCheckedRadioButtonId() == R.id.radio_button_online)
                     showErrorDialogue();
                 else {
-                    //TODO -> Send to order confirmation activity and clear back activities
                     finishAffinity();
                     startActivity(new Intent(PaymentActivity.this, OrderConfirmationActivity.class));
                 }
