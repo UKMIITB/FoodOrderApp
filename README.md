@@ -77,4 +77,5 @@ Profile Page
 <br/><br/>
 
 # Sample demo of App
+![ezgif com-gif-to-mp4](https://user-images.githubusercontent.com/36126610/115073990-b5048000-9f16-11eb-89d2-65b3e5f80d5c.gif)
 
