@@ -24,4 +24,4 @@ Cart Page -> Select or Add Address Page -> Payment Mode Page -> Order Placed Pag
 
 # Demo of App
 
-https://user-images.githubusercontent.com/36126610/115074688-abc7e300-9f17-11eb-995f-cb0cf32710e6.mp4
+https://user-images.githubusercontent.com/36126610/115074909-f47f9c00-9f17-11eb-9b7f-91269235d343.mp4
