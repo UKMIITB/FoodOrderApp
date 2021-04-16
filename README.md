@@ -19,11 +19,11 @@ In this project following concepts have been used and implemented:
 Splash Screen
 
 <img width="338" alt="Screenshot 2021-04-16 at 11 55 26 PM" src="https://user-images.githubusercontent.com/36126610/115070977-4671f300-9f13-11eb-9ca7-40c562e11f1d.png">
-
-
-
-
-
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
 
 Registration/Login page if user not already loggedIn
 
