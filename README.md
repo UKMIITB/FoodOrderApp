@@ -1,5 +1,5 @@
 # FoodOrderApp
-This was a part of personal project aimed at making a food ordering app is Java
+This was a part of personal project aimed at making a food ordering app in Java
 
 In this project following concepts have been used and implemented:
 1. RecyclerView
