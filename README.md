@@ -21,14 +21,26 @@ Splash Screen
 <img width="338" alt="Screenshot 2021-04-16 at 11 55 26 PM" src="https://user-images.githubusercontent.com/36126610/115070977-4671f300-9f13-11eb-9ca7-40c562e11f1d.png">
 
 
+
+
+
+
 Registration/Login page if user not already loggedIn
 
 <img width="333" alt="Screenshot 2021-04-16 at 11 56 00 PM" src="https://user-images.githubusercontent.com/36126610/115071094-6c979300-9f13-11eb-941a-dd12f40b9c3e.png">
 
 
+
+
+
+
 Login screen
 
 <img width="335" alt="Screenshot 2021-04-16 at 11 57 32 PM" src="https://user-images.githubusercontent.com/36126610/115071169-86d17100-9f13-11eb-8c0e-da4bf97eaf46.png">
+
+
+
+
 
 
 HomePage
